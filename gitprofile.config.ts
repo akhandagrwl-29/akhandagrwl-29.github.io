@@ -10,18 +10,18 @@ const CONFIG = {
         github: {
             display: true, // Display GitHub projects?
             header: 'Github Projects',
-            mode: 'automatic', // Mode can be: 'automatic' or 'manual'
+            mode: 'manual', // Mode can be: 'automatic' or 'manual'
             automatic: {
                 sortBy: 'stars', // Sort projects by 'stars' or 'updated'
-                limit: 8, // How many projects to display.
+                limit: 4, // How many projects to display.
                 exclude: {
-                    forks: false, // Forked projects will not be displayed if set to true.
+                    forks: true, // Forked projects will not be displayed if set to true.
                     projects: [], // These projects will not be displayed. example: ['arifszn/my-project1', 'arifszn/my-project2']
                 },
             },
             manual: {
                 // Properties for manually specifying projects
-                projects: ['arifszn/gitprofile', 'arifszn/pandora'], // List of repository names to display. example: ['arifszn/my-project1', 'arifszn/my-project2']
+                projects: ['akhandagrwl-29/pnr-status-change-notifier', 'akhandagrwl-29/ask-chotu', 'akhandagrwl-29/video-transcript-ingester', 'akhandagrwl-29/real-time-leaderboard'], // List of repository names to display. example: ['arifszn/my-project1', 'arifszn/my-project2']
             },
         },
         external: {
@@ -67,7 +67,7 @@ const CONFIG = {
         discord: '',
         telegram: '',
         website: '',
-        phone: '',
+        phone: '+91 7985834518',
         email: 'coding.akhandagarwal6174@gmail.com',
     },
     resume: {
@@ -77,17 +77,16 @@ const CONFIG = {
     skills: [
         'Go',
         'Python',
+        'AWS',
         'MongoDB',
         'MySQL',
         'DynamoDB',
         'Temporal',
-        'AWS',
-        'Git',
-        'Docker',
         'gRPC',
         'Redis',
         'Grafana',
         'Go-Kratos',
+        'Kafka',
     ],
     experiences: [
         {
@@ -100,31 +99,44 @@ const CONFIG = {
         {
             company: 'Zomato',
             position: 'Software Engineer I',
-            from: 'June 2013',
+            from: 'June 2023',
             to: 'February 2024',
             companyLink: 'https://www.zomato.com/',
+        },
+        {
+            company: 'Fi Money',
+            position: 'Tech Intern',
+            from: 'October 2022',
+            to: 'April 2023',
+            companyLink: 'https://fi.money/',
         },
     ],
     certifications: [
         {
-            name: 'Lorem ipsum',
-            body: 'Lorem ipsum dolor sit amet',
-            year: 'March 2022',
-            link: 'https://example.com',
+            name: 'Codechef CCDSA',
+            body: 'Codechef advanced level certificate for Data Structures and Algorithms',
+            year: 'April 2022',
+            link: 'https://www.codechef.com/certificates/public/8f71f3c',
         },
+        {
+            name: 'ACM-ICPC Regionals',
+            body: 'ICPC - International Collegiate Programming Contest',
+            year: 'June 2021',
+            link: 'https://drive.google.com/file/d/1UTYx03Lxo32h-e4wtAbR2WOmINT9b8R2/view',
+        },
+        {
+            name: 'Google Kickstart',
+            body: 'Google Coding Competitions',
+            year: 'December 2022',
+            link: 'https://drive.google.com/file/d/1sNbEf5-wuKyy8VSvBrdE5J-F5whKCeW3/view',
+        }
     ],
     educations: [
         {
-            institution: 'Institution Name',
-            degree: 'Degree',
-            from: '2015',
-            to: '2019',
-        },
-        {
-            institution: 'Institution Name',
-            degree: 'Degree',
-            from: '2012',
-            to: '2014',
+            institution: 'Institute of Engineering and Technology, Lucknow',
+            degree: 'Bachelor of Technology',
+            from: '2019',
+            to: '2023',
         },
     ],
     publications: [
@@ -159,7 +171,7 @@ const CONFIG = {
     // Track visitor interaction and behavior. https://www.hotjar.com
     hotjar: { id: '', snippetVersion: 6 },
     themeConfig: {
-        defaultTheme: 'lofi',
+        defaultTheme: 'dark',
 
         // Hides the switch in the navbar
         // Useful if you want to support a single color mode
@@ -176,45 +188,45 @@ const CONFIG = {
         themes: [
             'light',
             'dark',
-            'cupcake',
-            'bumblebee',
-            'emerald',
-            'corporate',
-            'synthwave',
-            'retro',
-            'cyberpunk',
-            'valentine',
-            'halloween',
-            'garden',
-            'forest',
-            'aqua',
-            'lofi',
-            'pastel',
-            'fantasy',
-            'wireframe',
-            'black',
-            'luxury',
-            'dracula',
-            'cmyk',
-            'autumn',
-            'business',
-            'acid',
-            'lemonade',
-            'night',
-            'coffee',
-            'winter',
-            'dim',
-            'nord',
-            'sunset',
-            'caramellatte',
-            'abyss',
-            'silk',
-            'procyon',
+            // 'cupcake',
+            // 'bumblebee',
+            // 'emerald',
+            // 'corporate',
+            // 'synthwave',
+            // 'retro',
+            // 'cyberpunk',
+            // 'valentine',
+            // 'halloween',
+            // 'garden',
+            // 'forest',
+            // 'aqua',
+            // 'lofi',
+            // 'pastel',
+            // 'fantasy',
+            // 'wireframe',
+            // 'black',
+            // 'luxury',
+            // 'dracula',
+            // 'cmyk',
+            // 'autumn',
+            // 'business',
+            // 'acid',
+            // 'lemonade',
+            // 'night',
+            // 'coffee',
+            // 'winter',
+            // 'dim',
+            // 'nord',
+            // 'sunset',
+            // 'caramellatte',
+            // 'abyss',
+            // 'silk',
+            // 'procyon',
         ],
     },
 
     // Optional Footer. Supports plain text or HTML.
-    footer: `Made with ❤️`,
+    footer: `Made with ❤️ by Akhand Agarwal`,
 
     enablePWA: true,
 };
