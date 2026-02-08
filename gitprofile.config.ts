@@ -29,20 +29,20 @@ const CONFIG = {
             // To hide the `External Projects` section, keep it empty.
             projects: [
                 {
-                    title: 'Project Name',
+                    title: 'Xtreme by Zomato',
                     description:
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut.',
+                        'Xtreme by Zomato empowers merchants to deliver packages effortlessly. A groundbreaking logistics platform that revolutionizes package delivery for merchants.',
                     imageUrl:
-                        'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg',
-                    link: 'https://example.com',
+                        'https://play-lh.googleusercontent.com/mKHYI6yfSLMcoLzVO7QtBe3GPnyLw-dM8x0BKeUrtVwoHFkjt0q4315lH0MUKxihzq4=w480-h960-rw',
+                    link: 'https://play.google.com/store/apps/details?id=com.application.zomato.xtreme&hl=en_US',
                 },
                 {
-                    title: 'Project Name',
+                    title: 'Credit Card EMI conversion',
                     description:
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut.',
+                        'Successfully implemented credit card EMI conversion feature, enabling customers to convert their purchases into affordable monthly installments.',
                     imageUrl:
-                        'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg',
-                    link: 'https://example.com',
+                        'https://fi.money/assets/credit-card/webp/intro.webp',
+                    link: 'https://fi.money/credit-cards/amplifi',
                 },
             ],
         },
@@ -141,22 +141,25 @@ const CONFIG = {
     ],
     publications: [
         {
-            title: 'Publication Title',
+            title: 'BFF vs API Gateway',
             conferenceName: '',
-            journalName: 'Journal Name',
-            authors: 'John Doe, Jane Smith',
-            link: 'https://example.com',
+            journalName: 'Backend for frontend(BFF) pattern vs API gateway',
+            authors: 'Akhand Agarwal',
+            link: 'https://www.linkedin.com/pulse/backend-frontendbff-pattern-vs-api-gateway-akhand-agarwal-0djnc/',
             description:
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                'When designing microservices, two key patterns often come into play: BFF (Backend for Frontend) and API Gateway. In this article, we delve into the basics of these patterns, exploring their purpose and comparing their roles in simplifying complex microservices architectures.',
         },
         {
-            title: 'Publication Title',
-            conferenceName: 'Conference Name',
-            journalName: '',
-            authors: 'John Doe, Jane Smith',
-            link: 'https://example.com',
+            title: 'Method Sets in Golang',
+            conferenceName: '',
+            journalName: 'Method Sets in Go - Rules for Interface implementation',
+            authors: 'Akhand Agarwal',
+            link: 'https://www.linkedin.com/pulse/method-sets-go-rules-interface-implementation-akhand-agarwal-w0vic/',
             description:
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                `Method sets help you to understand the rules around interface compliance. There are two types of method sets -
+                    Values method sets (used with value type receiver in Go)
+                    Pointer method sets (used with pointer type receiver in Go)
+                `,
         },
     ],
     // Display articles from your medium or dev account. (Optional)
