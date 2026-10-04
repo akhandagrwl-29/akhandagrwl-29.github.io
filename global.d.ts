@@ -230,6 +230,15 @@ interface Certification {
   link?: string;
 }
 
+interface Award {
+  title: string;
+  issuer?: string;
+  year?: string;
+  description?: string;
+  imageUrl?: string;
+  link?: string;
+}
+
 interface Education {
   institution?: string;
   degree?: string;
@@ -351,6 +360,11 @@ interface Config {
    * Certifications list
    */
   certifications?: Array<Certification>;
+
+  /**
+   * Honors and awards
+   */
+  awards?: Array<Award>;
 
   /**
    * Education list
