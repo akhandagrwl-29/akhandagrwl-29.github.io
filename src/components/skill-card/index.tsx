@@ -21,23 +21,23 @@ const SkillCard = ({
   };
 
   return (
-    <div className="card shadow-lg card-sm bg-base-100">
-      <div className="card-body">
-        <div className="mx-3">
-          <h5 className="card-title">
+    <div className="panel h-full">
+      <div className="p-7">
+        <div className="mb-4">
+          <h5 className="text-lg font-bold tracking-tight">
             {loading ? (
               skeleton({ widthCls: 'w-32', heightCls: 'h-8' })
             ) : (
-              <span className="text-base-content opacity-70">Tech Stack</span>
+              <span>Tech stack</span>
             )}
           </h5>
         </div>
-        <div className="p-3 flow-root">
-          <div className="-m-1 flex flex-wrap justify-center gap-2">
+        <div className="flow-root">
+          <div className="flex flex-wrap gap-2">
             {loading
               ? renderSkeleton()
               : skills.map((skill, index) => (
-                  <div key={index} className="badge badge-primary badge-sm">
+                  <div key={index} className="skill-chip">
                     {skill}
                   </div>
                 ))}

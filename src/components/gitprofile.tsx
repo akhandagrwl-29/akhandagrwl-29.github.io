@@ -13,9 +13,6 @@ import { getInitialTheme, getSanitizedConfig, setupHotjar } from '../utils';
 import { SanitizedConfig } from '../interfaces/sanitized-config';
 import ErrorPage from './error-page';
 import { DEFAULT_THEMES } from '../constants/default-themes';
-import ThemeChanger from './theme-changer';
-import { BG_COLOR } from '../constants';
-import AvatarCard from './avatar-card';
 import { Profile } from '../interfaces/profile';
 import DetailsCard from './details-card';
 import SkillCard from './skill-card';
@@ -28,6 +25,10 @@ import ExternalProjectCard from './external-project-card';
 import BlogCard from './blog-card';
 import Footer from './footer';
 import PublicationCard from './publication-card';
+import SiteHeader from './site-header';
+import Hero from './hero';
+import SiteSection from './site-section';
+import AwardCard from './award-card';
 
 /**
  * Renders the GitProfile component.
@@ -143,6 +144,21 @@ const GitProfile = ({ config }: { config: Config }) => {
     theme && document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
+  useEffect(() => {
+    const glow = document.getElementById('pointer-glow');
+    if (!glow) {
+      return;
+    }
+
+    const onMove = (event: PointerEvent) => {
+      glow.style.setProperty('--x', `${event.clientX}px`);
+      glow.style.setProperty('--y', `${event.clientY}px`);
+    };
+
+    window.addEventListener('pointermove', onMove);
+    return () => window.removeEventListener('pointermove', onMove);
+  }, []);
+
   const handleError = (error: AxiosError | Error): void => {
     console.error('Error:', error);
 
@@ -178,7 +194,8 @@ const GitProfile = ({ config }: { config: Config }) => {
   };
 
   return (
-    <div className="fade-in h-screen">
+    <div className="site-root fade-in">
+      <div id="pointer-glow" className="pointer-glow" />
       {error ? (
         <ErrorPage
           status={error.status}
@@ -187,40 +204,141 @@ const GitProfile = ({ config }: { config: Config }) => {
         />
       ) : (
         <>
-          <div className={`p-4 lg:p-10 min-h-full ${BG_COLOR}`}>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 rounded-box">
-              <div className="col-span-1">
-                <div className="grid grid-cols-1 gap-6">
-                  {!sanitizedConfig.themeConfig.disableSwitch && (
-                    <ThemeChanger
-                      theme={theme}
-                      setTheme={setTheme}
-                      loading={loading}
-                      themeConfig={sanitizedConfig.themeConfig}
-                    />
-                  )}
-                  <AvatarCard
-                    profile={profile}
+          <SiteHeader
+            name={profile?.name || 'Akhand Agarwal'}
+            githubUsername={sanitizedConfig.github.username}
+            linkedin={sanitizedConfig.social.linkedin}
+            theme={theme}
+            setTheme={setTheme}
+          />
+          <Hero
+            profile={profile}
+            loading={loading}
+            resumeFileUrl={sanitizedConfig.resume.fileUrl}
+            githubUsername={sanitizedConfig.github.username}
+          />
+
+          {sanitizedConfig.experiences.length !== 0 && (
+            <SiteSection
+              id="experience"
+              label="01 — Career"
+              title={
+                <>
+                  Places I&apos;ve <em>built</em>
+                </>
+              }
+            >
+              <ExperienceCard
+                loading={loading}
+                experiences={sanitizedConfig.experiences}
+              />
+            </SiteSection>
+          )}
+
+          {sanitizedConfig.projects.external.projects.length !== 0 && (
+            <SiteSection
+              id="work"
+              label="02 — Product"
+              title={
+                <>
+                  A few things I&apos;ve <em>built</em>
+                </>
+              }
+            >
+              <ExternalProjectCard
+                loading={loading}
+                header={sanitizedConfig.projects.external.header}
+                externalProjects={sanitizedConfig.projects.external.projects}
+                googleAnalyticId={sanitizedConfig.googleAnalytics.id}
+              />
+            </SiteSection>
+          )}
+
+          {sanitizedConfig.projects.github.display && (
+            <SiteSection
+              id="projects"
+              label="03 — Open source"
+              title={
+                <>
+                  Selected <em>repositories</em>
+                </>
+              }
+            >
+              <GithubProjectCard
+                header={sanitizedConfig.projects.github.header}
+                limit={sanitizedConfig.projects.github.automatic.limit}
+                githubProjects={githubProjects}
+                loading={loading}
+                googleAnalyticsId={sanitizedConfig.googleAnalytics.id}
+              />
+            </SiteSection>
+          )}
+
+          {sanitizedConfig.publications.length !== 0 && (
+            <SiteSection
+              id="writing"
+              label="04 — Writing"
+              title={
+                <>
+                  Notes on <em>systems</em>
+                </>
+              }
+            >
+              <PublicationCard
+                loading={loading}
+                publications={sanitizedConfig.publications}
+              />
+            </SiteSection>
+          )}
+
+          {sanitizedConfig.awards.length !== 0 && (
+            <SiteSection
+              id="awards"
+              label="05 — Honors"
+              title={
+                <>
+                  Awards &amp; <em>recognition</em>
+                </>
+              }
+            >
+              <AwardCard loading={loading} awards={sanitizedConfig.awards} />
+            </SiteSection>
+          )}
+
+          {sanitizedConfig.blog.display && (
+            <SiteSection id="blog" label="06 — Blog" title="Latest posts">
+              <BlogCard
+                loading={loading}
+                googleAnalyticsId={sanitizedConfig.googleAnalytics.id}
+                blog={sanitizedConfig.blog}
+              />
+            </SiteSection>
+          )}
+
+          {(sanitizedConfig.skills.length !== 0 ||
+            sanitizedConfig.educations.length !== 0 ||
+            sanitizedConfig.certifications.length !== 0) && (
+            <SiteSection
+              id="stack"
+              label="06 — Craft"
+              title={
+                <>
+                  Tools, school, <em>proof</em>
+                </>
+              }
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 items-start">
+                {sanitizedConfig.skills.length !== 0 && (
+                  <SkillCard
                     loading={loading}
-                    avatarRing={sanitizedConfig.themeConfig.displayAvatarRing}
-                    resumeFileUrl={sanitizedConfig.resume.fileUrl}
+                    skills={sanitizedConfig.skills}
                   />
-                  <DetailsCard
-                    profile={profile}
-                    loading={loading}
-                    github={sanitizedConfig.github}
-                    social={sanitizedConfig.social}
-                  />
-                  {sanitizedConfig.skills.length !== 0 && (
-                    <SkillCard
+                )}
+                <div className="grid gap-5">
+                  {sanitizedConfig.educations.length !== 0 && (
+                    <EducationCard
                       loading={loading}
-                      skills={sanitizedConfig.skills}
-                    />
-                  )}
-                  {sanitizedConfig.experiences.length !== 0 && (
-                    <ExperienceCard
-                      loading={loading}
-                      experiences={sanitizedConfig.experiences}
+                      educations={sanitizedConfig.educations}
                     />
                   )}
                   {sanitizedConfig.certifications.length !== 0 && (
@@ -229,57 +347,31 @@ const GitProfile = ({ config }: { config: Config }) => {
                       certifications={sanitizedConfig.certifications}
                     />
                   )}
-                  {sanitizedConfig.educations.length !== 0 && (
-                    <EducationCard
-                      loading={loading}
-                      educations={sanitizedConfig.educations}
-                    />
-                  )}
                 </div>
               </div>
-              <div className="lg:col-span-2 col-span-1">
-                <div className="grid grid-cols-1 gap-6">
-                  {sanitizedConfig.projects.github.display && (
-                    <GithubProjectCard
-                      header={sanitizedConfig.projects.github.header}
-                      limit={sanitizedConfig.projects.github.automatic.limit}
-                      githubProjects={githubProjects}
-                      loading={loading}
-                      googleAnalyticsId={sanitizedConfig.googleAnalytics.id}
-                    />
-                  )}
-                  {sanitizedConfig.publications.length !== 0 && (
-                    <PublicationCard
-                      loading={loading}
-                      publications={sanitizedConfig.publications}
-                    />
-                  )}
-                  {sanitizedConfig.projects.external.projects.length !== 0 && (
-                    <ExternalProjectCard
-                      loading={loading}
-                      header={sanitizedConfig.projects.external.header}
-                      externalProjects={
-                        sanitizedConfig.projects.external.projects
-                      }
-                      googleAnalyticId={sanitizedConfig.googleAnalytics.id}
-                    />
-                  )}
-                  {sanitizedConfig.blog.display && (
-                    <BlogCard
-                      loading={loading}
-                      googleAnalyticsId={sanitizedConfig.googleAnalytics.id}
-                      blog={sanitizedConfig.blog}
-                    />
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
+            </SiteSection>
+          )}
+
+          <SiteSection
+            id="contact"
+            label="07 — Contact"
+            title={
+              <>
+                Let&apos;s build the <em>next</em> thing
+              </>
+            }
+          >
+            <DetailsCard
+              profile={profile}
+              loading={loading}
+              github={sanitizedConfig.github}
+              social={sanitizedConfig.social}
+            />
+          </SiteSection>
+
           {sanitizedConfig.footer && (
-            <footer
-              className={`p-4 footer ${BG_COLOR} text-base-content footer-center`}
-            >
-              <div className="card card-sm bg-base-100 shadow-sm">
+            <footer className="site-footer">
+              <div className="site-wrap">
                 <Footer content={sanitizedConfig.footer} loading={loading} />
               </div>
             </footer>

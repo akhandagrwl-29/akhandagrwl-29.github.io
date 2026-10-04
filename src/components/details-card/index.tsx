@@ -65,7 +65,7 @@ const ListItem: React.FC<{
   skeleton?: boolean;
 }> = ({ icon, title, value, link, skeleton = false }) => {
   return (
-    <div className="flex justify-start py-2 px-1 items-center">
+    <div className="flex justify-start py-2 items-center contact-row">
       <div className="grow font-medium gap-2 flex items-center my-1">
         {icon} {title}
       </div>
@@ -123,7 +123,7 @@ const OrganizationItem: React.FC<{
   };
 
   return (
-    <div className="flex justify-start py-2 px-1 items-center">
+    <div className="flex justify-start py-2 items-center contact-row">
       <div className="grow font-medium gap-2 flex items-center my-1">
         {icon} {title}
       </div>
@@ -169,8 +169,8 @@ const DetailsCard = ({ profile, loading, social, github }: Props) => {
   };
 
   return (
-    <div className="card shadow-lg card-sm bg-base-100">
-      <div className="card-body">
+    <div className="panel">
+      <div className="p-7">
         <div className="text-base-content">
           {loading || !profile ? (
             renderSkeleton()

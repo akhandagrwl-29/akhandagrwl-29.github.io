@@ -131,6 +131,26 @@ const CONFIG = {
             link: 'https://drive.google.com/file/d/1sNbEf5-wuKyy8VSvBrdE5J-F5whKCeW3/view',
         }
     ],
+    awards: [
+        {
+            title: 'Impact Champions Award',
+            issuer: 'Allen Digital',
+            year: 'August 2026',
+            description:
+                'Honored for exceptional performance and impact in a short period — scaling the Assessment platform to 3L concurrent test takers, improving critical report TATs by 65%+, and delivering large-scale exams with no production issues.',
+            imageUrl: '/awards/impact-champions-award.jpg',
+            link: 'https://www.linkedin.com/in/akhandagarwal/details/honors/',
+        },
+        {
+            title: 'Culture Champion Award',
+            issuer: 'Allen Digital',
+            year: 'December 2024',
+            description:
+                'Awarded at the Offsite Rewards & Recognition ceremony by the CEO for embodying and promoting organizational values.',
+            imageUrl: '/awards/culture-champion-award.jpg?v=2',
+            link: 'https://www.linkedin.com/in/akhandagarwal/details/honors/',
+        },
+    ],
     educations: [
         {
             institution: 'Institute of Engineering and Technology, Lucknow',
@@ -174,7 +194,7 @@ const CONFIG = {
     // Track visitor interaction and behavior. https://www.hotjar.com
     hotjar: { id: '', snippetVersion: 6 },
     themeConfig: {
-        defaultTheme: 'dark',
+        defaultTheme: 'light',
 
         // Hides the switch in the navbar
         // Useful if you want to support a single color mode

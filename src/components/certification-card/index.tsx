@@ -13,18 +13,14 @@ const ListItem = ({
   body?: React.ReactNode;
   link?: string;
 }) => (
-  <li className="mb-5 ml-4">
-    <div
-      className="absolute w-2 h-2 bg-base-300 rounded-full border border-base-300 mt-1.5"
-      style={{ left: '-4.5px' }}
-    ></div>
-    <div className="my-0.5 text-xs">{year}</div>
+  <li>
+    <div className="when">{year}</div>
     <div className="font-medium">
       <a href={link} target="_blank" rel="noreferrer">
         {name}
       </a>
     </div>
-    <h3 className="mb-4 font-normal">{body}</h3>
+    <h3 className="text-[color:var(--text-2)] font-normal">{body}</h3>
   </li>
 );
 
@@ -59,38 +55,34 @@ const CertificationCard = ({
   };
 
   return (
-    <div className="card shadow-lg card-sm bg-base-100">
-      <div className="card-body">
-        <div className="mx-3">
-          <h5 className="card-title">
+    <div className="panel">
+      <div className="p-7">
+        <div className="mb-4">
+          <h5 className="text-lg font-bold tracking-tight">
             {loading ? (
               skeleton({ widthCls: 'w-32', heightCls: 'h-8' })
             ) : (
-              <span className="text-base-content opacity-70">
-                Certification
-              </span>
+              <span>Certifications</span>
             )}
           </h5>
         </div>
-        <div className="text-base-content">
-          <ol className="relative border-l border-base-300 border-opacity-30 my-2 mx-4">
-            {loading ? (
-              renderSkeleton()
-            ) : (
-              <>
-                {certifications.map((certification, index) => (
-                  <ListItem
-                    key={index}
-                    year={certification.year}
-                    name={certification.name}
-                    body={certification.body}
-                    link={certification.link}
-                  />
-                ))}
-              </>
-            )}
-          </ol>
-        </div>
+        <ol className="career-timeline">
+          {loading ? (
+            renderSkeleton()
+          ) : (
+            <>
+              {certifications.map((certification, index) => (
+                <ListItem
+                  key={index}
+                  year={certification.year}
+                  name={certification.name}
+                  body={certification.body}
+                  link={certification.link}
+                />
+              ))}
+            </>
+          )}
+        </ol>
       </div>
     </div>
   );
